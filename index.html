@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDoL</title>
+  <link rel="stylesheet" href="./styles/index.css">
+  <script type="module" src="./main.js"></script>
+</head>
+
+<body>
+  <div class="todo">
+    <h1 class="todo__title">ТудуЛИСТ</h1>
+    <search>
+      <form class="todo__form" data-js-add-manual-form>
+        <div class="todo__field field">
+          <label class="field__label" for="search-tasks">Поиск задач</label>
+          <input class="field__input" 
+            id="search-tasks" 
+            list="tasks" 
+            placeholder="Купить..." 
+            autocomplete="off"
+            type="search"
+          >
+          <datalist id="tasks">
+            <!-- Тут планирую добавлять задачи, как option для автозаполнения и поиска, пример поля ниже -->
+            <!-- <option value="Задача номер 1"></option> -->
+          </datalist>
+          <button class="button add-manual" 
+            type="button" 
+            popovertarget="add-task-popover"
+            data-js-add-manual-button
+          >
+            <span>Добавить задачу</span>
+          </button>
+          <div class="popover" popover id="add-task-popover">
+            <form class="popover__manual-form">
+              <!-- Форма добавления задачи вручную -->
+            </form>
+          </div>
+        </div>
+      </form>
+    </search>
+    <form class="todo__form" data-js-quick-add-form>
+      <div class="todo__field field">
+        <label class="field__label" for="search-tasks">Быстрое создание</label>
+        <input class="field__input" 
+            id="search-tasks" 
+            placeholder="Задача номер 2" 
+            autocomplete="off" 
+            type="search"
+            data-js-quick-add-input
+        >
+        <button class="button" type="submit" data-js-quick-add-button>
+          <span>+</span>
+        </button>
+      </div>
+    </form>
+    <div class="todo__info">
+      <div class="todo__total-tasks">
+        Всего задач: <span>0</span>
+      </div>
+      <button class="todo__delete-all-button" type="button">
+        Удалить все
+      </button>
+    </div>
+    <ul class="todo__list">
+      <!-- Тут будут задачи -->
+    </ul>
+</body>
+
+</html>
