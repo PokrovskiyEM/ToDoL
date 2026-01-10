@@ -11,12 +11,13 @@ const renderApp = () => {
     let toDoItem = document.createElement('li')
     toDoItem.className = 'todo__item'
     toDoItem.innerHTML =
-      // `<p class="todo__item-title">${todo.title}</p>
-      // ${todo?.description ? `<p class="todo__item-description">${todo.description}</p>` : ''}` // Если у объекта todo есть поле description - то добавляем его // Старая версия
-
-      `<p class="todo__item-title">${todo.title}</p>
-            ${todo.description !== null ? `<p class="todo__item-description">${todo.description}</p>` : ''}` // Если у объекта todo поле description не null - то добавляем его
-
+    `<div class="todo__item-wrapper" data-js-task-id=${todo.id}>
+      <p class="todo__item-title">${todo.title}</p>
+      ${todo.description !== null ? `<p class="todo__item-description">${todo.description}</p>` : ''} 
+      <div class="todo__item-controls">
+        <button class="delete-button" data-js-delete-task-button>×</button>
+      </div>
+    </div>`
     tasksList.appendChild(toDoItem)
   });
 }

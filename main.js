@@ -1,9 +1,9 @@
 import renderApp from "./ui/renderApp.js";
 import addToDo from "./actions/addToDo.js";
+import removeToDo from "./actions/removeToDo.js";
 import { subscribe } from "./state/notify.js"
 
 subscribe(renderApp)
-
 renderApp() // первый рендер
 
 // Быстрое добавление задачи
@@ -15,4 +15,14 @@ quickAddButton.addEventListener('click', (event) => {
 
   addToDo(quickAddInput.value)
   quickAddInput.value = ''
+})
+
+// Удаление задачи
+const tasksList = document.querySelector('.todo__list')
+
+tasksList.addEventListener('click', (event) => {
+  if (event.target.hasAttribute('data-js-delete-task-button')) {
+    const taskId = event.target.closest('.todo__item-wrapper').getAttribute('data-js-task-id')
+    removeToDo(taskId)
+  }
 })
