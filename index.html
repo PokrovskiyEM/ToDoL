@@ -11,22 +11,24 @@
 
 <body>
   <div class="todo">
-    <h1 class="todo__title">ТудуЛИСТ</h1>
+    <h1 class="todo__title">ТуДуЛИСТ</h1>
     <search>
       <form class="todo__form" data-js-add-manual-form>
         <div class="todo__field field">
-          <label class="field__label" for="search-tasks">Поиск задач</label>
           <input class="field__input" 
             id="search-tasks" 
             list="tasks" 
-            placeholder="Купить..." 
+            placeholder="" 
             autocomplete="off"
             type="search"
             data-js-add-manual-input
           >
+          <label class="field__label" for="search-tasks">Поиск задачи</label>
           <datalist id="tasks">
             <!-- Тут планирую добавлять задачи, как option для автозаполнения и поиска, пример поля ниже -->
-            <!-- <option value="Задача номер 1"></option> -->
+            <option value="Задача номер 1"></option>
+            <option value="Задача номер 1"></option>
+            <option value="Задача номер 1"></option>
           </datalist>
           <button class="button add-manual" 
             type="button" 
@@ -45,15 +47,15 @@
     </search>
     <form class="todo__form" data-js-quick-add-form>
       <div class="todo__field field">
-        <label class="field__label" for="search-tasks">Быстрое создание</label>
         <input class="field__input" 
             id="search-tasks" 
-            placeholder="Задача номер 2" 
+            placeholder="" 
             autocomplete="off" 
             type="search"
             data-js-quick-add-input
             required
         >
+        <label class="field__label" for="search-tasks">Быстрое создание задачи</label>
         <button class="button" type="submit" data-js-quick-add-button>
           <span>+</span>
         </button>

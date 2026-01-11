@@ -19,11 +19,12 @@ const addToDo = (taskTitle, taskDescription) => {
   notify()
 
   console.log(
-    `Добавление элемента: {
-            id - ${newToDoItem.id}
-            title - ${newToDoItem.title}
-            description - ${newToDoItem.description !== null ? newToDoItem.description : 'Описание отсутствует'}
-        }`
+    `Добавление элемента: 
+    {
+      id - ${newToDoItem.id}
+      title - ${newToDoItem.title}
+      description - ${newToDoItem.description !== null ? newToDoItem.description : 'Описание отсутствует'}
+    }`
   )
 }
 

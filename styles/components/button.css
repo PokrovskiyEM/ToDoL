@@ -1,0 +1,10 @@
+.button {
+  border-radius: var(--radius-sm);
+  border: none;
+  background-color: var(--color-primary);
+  color: #fff;
+  width: auto;
+  height: auto;
+  min-width: 42px;
+  min-height: 42px;
+}

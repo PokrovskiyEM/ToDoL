@@ -7,7 +7,7 @@ const removeToDo = (taskId) => {
   if (newToDos.length !== state.todos.length) {
     state.todos = newToDos
     notify()
-  } else alert('Элемент не найден!')
+  } else alert('Элемент не удален!')
 
 }
 

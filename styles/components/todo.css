@@ -1,0 +1,27 @@
+.todo {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: var(--space-lg);
+  padding-top: calc(var(--space-lg) / 2);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.todo__title {
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.todo__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 var(--space-md) 0;
+}
+
+.todo__delete-all-button {
+  background: none;
+  border: none;
+  color: var(--color-danger);
+}

@@ -1,1 +1,21 @@
-переменные
+:root {
+  --color-bg: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-border: #e0e3e7;
+  --color-text: #1f2937;
+  --color-muted: #6b7280;
+  --color-primary: #3b82f6;
+  --color-danger: #ef4444;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+
+  --transition-duration: 0.3s;
+
+  --font-base: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}

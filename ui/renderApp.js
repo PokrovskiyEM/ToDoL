@@ -12,10 +12,16 @@ const renderApp = () => {
     toDoItem.className = 'todo__item'
     toDoItem.innerHTML =
     `<div class="todo__item-wrapper" data-js-task-id=${todo.id}>
+      <input
+        class="todo__item-checkbox"
+        type="checkbox"
+        data-js-task-checkbox
+        ${todo.taskStatus === 'complete' ? 'checked' : ''}
+      />
       <p class="todo__item-title">${todo.title}</p>
       ${todo.description !== null ? `<p class="todo__item-description">${todo.description}</p>` : ''} 
       <div class="todo__item-controls">
-        <button class="delete-button" data-js-delete-task-button>×</button>
+        <button class="todo__button delete-button" data-js-delete-task-button>х</button>
       </div>
     </div>`
     tasksList.appendChild(toDoItem)
