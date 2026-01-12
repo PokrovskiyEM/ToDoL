@@ -3,8 +3,21 @@
   border: none;
   background-color: var(--color-primary);
   color: #fff;
-  width: auto;
-  height: auto;
   min-width: 42px;
+  transition-timing-function: ease-in-out;
+  user-select: none;
+}
+
+.button.add-manual,
+.button[data-js-quick-add-button] {
   min-height: 42px;
+}
+
+.button.is-current {
+  background-color: var(--color-danger);
+}
+
+.button:active {
+  transition-duration: 0s;
+  scale: 1.1;
 }

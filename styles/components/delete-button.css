@@ -1,0 +1,12 @@
+.todo__info-delete-all-button {
+  background: none;
+  color: var(--color-danger);
+  padding-left: 0;
+  padding-block: 0;
+}
+
+@media (width > 550px) {
+  .todo__info-delete-all-button {
+    translate: 0 4px;
+  }
+}

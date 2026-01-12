@@ -8,5 +8,7 @@
 @import "./components/form.css";
 @import "./components/field.css";
 @import "./components/button.css";
+@import "./components/delete-button.css";
+@import "./components/filters.css";
 @import "./components/list.css";
 @import "./components/popover.css";

@@ -62,16 +62,16 @@
       </div>
     </form>
     <div class="todo__info">
-      <div class="todo__total-tasks">
-        Всего задач: <span>0</span>
+      <div class="todo__info-filters filters">
+          <button class="filters__all button is-current">All<br><span data-js-tasks-count>0</span></button>
+          <button class="filters__active button">Active<br><span data-js-active-tasks-count>0</span></button>
+          <button class="filters__complete button">Complete<br><span data-js-complete-tasks-count>0</span></button>
       </div>
-      <button class="todo__delete-all-button" type="button">
-        Удалить все
-      </button>
+      <button class="todo__info-delete-all-button button" type="button">Удалить все</button>
     </div>
     <ul class="todo__list">
-      <!-- Тут будут задачи -->
     </ul>
+  </div>
 </body>
 
 </html>
