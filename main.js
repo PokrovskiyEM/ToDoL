@@ -2,6 +2,7 @@ import renderApp from "./ui/renderApp.js";
 import addToDo from "./actions/addToDo.js";
 import removeToDo from "./actions/removeToDo.js";
 import switchToDoStatus from "./actions/switchToDoStatus.js";
+import expandDescription from "./actions/expandDescription.js";
 import { subscribe } from "./state/notify.js"
 
 subscribe(renderApp)
@@ -18,10 +19,10 @@ quickAddButton.addEventListener('click', (event) => {
   quickAddInput.value = ''
 })
 
-// Удаление задачи
 const tasksList = document.querySelector('.todo__list')
 
 tasksList.addEventListener('click', (event) => {
+  // Удаление задачи
   if (event.target.hasAttribute('data-js-delete-task-button')) {
     const taskId = event.target.closest('.todo__item-wrapper').getAttribute('data-js-task-id')
     removeToDo(taskId)
@@ -31,5 +32,11 @@ tasksList.addEventListener('click', (event) => {
   if (event.target.hasAttribute('data-js-task-checkbox')) {
     const taskId = event.target.closest('.todo__item-wrapper').getAttribute('data-js-task-id')
     switchToDoStatus(taskId)
+  }
+
+  // Раскрытие описания задачи
+  if (event.target.hasAttribute('data-js-expand')) {
+    const taskId = event.target.closest('.todo__item-wrapper').getAttribute('data-js-task-id')
+    expandDescription(taskId)
   }
 })

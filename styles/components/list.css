@@ -9,16 +9,78 @@
   padding: var(--space-sm) 0;
 }
 
-.todo__item-wrapper {
+/* .todo__item-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
+} */
+
+.todo__item-wrapper {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: 
+    'check title controls';
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+
+  & .todo__item-checkbox {
+    grid-area: check;
+  }
+
+  & .todo__item-title {
+    grid-area: title;
+  }
+
+  & .todo__item-controls {
+    grid-area: controls;
+  }
+  
+  & .todo__item-description {
+    grid-area: description;
+
+    animation-duration: 0.5s;
+    animation-name: showDesc;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+  }
+}
+
+.todo__item-wrapper.is-expanded {
+  /* Анимация появления описания задачи */
+  animation-duration: 0.5s;
+  animation-name: expand;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+
+  grid-template-rows: auto auto;
+  grid-template-areas: 
+    'check title controls'
+    'description description description';
+  row-gap: var(--space-sm);
 }
 
 .todo__item-title {
   flex: 1;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+/* Временно убрал анимацию, т.к. она запускается при рендере списка, если будет рендер не всего списка, а отдельных задач, то можно вернуть */
+/* @keyframes showDesc {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+} */
 
 .todo__item-description {
   font-size: 0.9em;

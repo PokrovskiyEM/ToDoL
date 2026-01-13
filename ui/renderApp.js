@@ -11,15 +11,15 @@ const renderApp = () => {
     let toDoItem = document.createElement('li')
     toDoItem.className = 'todo__item'
     toDoItem.innerHTML =
-    `<div class="todo__item-wrapper" data-js-task-id=${todo.id}>
+    `<div class="todo__item-wrapper ${todo.isExpanded === false ? "" : "is-expanded"}" data-js-task-id=${todo.id}>
       <input
         class="todo__item-checkbox"
         type="checkbox"
         data-js-task-checkbox
         ${todo.taskStatus === 'complete' ? 'checked' : ''}
       />
-      <p class="todo__item-title">${todo.title}</p>
-      ${todo.description !== null ? `<p class="todo__item-description">${todo.description}</p>` : ''} 
+      ${todo.description !== null ? `<p class="todo__item-title" data-js-task-title>${todo.title} <span class="cursor-pointer" data-js-expand>. . .</span></p>
+      <p class="todo__item-description" data-js-task-description ${todo.isExpanded === false ? "hidden" : ""}>${todo.description}</p>` : `<p class="todo__item-title" data-js-task-title>${todo.title}</p>`} 
       <div class="todo__item-controls">
         <button class="todo__button button delete-button" data-js-delete-task-button>Del</button>
       </div>
