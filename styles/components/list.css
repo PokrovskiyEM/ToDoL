@@ -65,7 +65,11 @@
 }
 
 .todo__item-title {
-  flex: 1;
+  &.complete-line {
+    text-decoration: line-through;
+    text-decoration-color: var(--color-muted);
+    text-decoration-thickness: 2px;
+  }
 }
 
 .cursor-pointer {

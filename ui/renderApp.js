@@ -18,7 +18,7 @@ const renderApp = () => {
         data-js-task-checkbox
         ${todo.taskStatus === 'complete' ? 'checked' : ''}
       />
-      ${todo.description !== null ? `<p class="todo__item-title" data-js-task-title>${todo.title} <span class="cursor-pointer" data-js-expand>. . .</span></p>
+      ${todo.description !== null ? `<p class="todo__item-title ${todo.taskStatus === 'complete' ? 'complete-line' : ''}" data-js-task-title>${todo.title} <span class="cursor-pointer" data-js-expand>. . .</span></p>
       <p class="todo__item-description" data-js-task-description ${todo.isExpanded === false ? "hidden" : ""}>${todo.description}</p>` : `<p class="todo__item-title" data-js-task-title>${todo.title}</p>`} 
       <div class="todo__item-controls">
         <button class="todo__button button delete-button" data-js-delete-task-button>Del</button>
