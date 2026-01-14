@@ -64,7 +64,7 @@ input[type="search"]::-webkit-search-results-decoration {
   transition: var(--transition-duration) ease-in-out;
 }
 
-@media (width > 450px) {
+@media (width > 490px) {
     .field {
       flex-direction: row;
     }

@@ -15,7 +15,7 @@ const state = {
       isExpanded: false,
     },
   ],
-  filter: 'all',
+  currentFilter: 'all',
 }
 
 export default state

@@ -65,10 +65,18 @@
 }
 
 .todo__item-title {
+  text-wrap: balance;  
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
   &.complete-line {
     text-decoration: line-through;
     text-decoration-color: var(--color-muted);
     text-decoration-thickness: 2px;
+  }
+
+  span {
+    white-space: nowrap;
   }
 }
 

@@ -3,6 +3,11 @@
   color: var(--color-danger);
   padding-left: 0;
   padding-block: 0;
+
+  &:not(.is-visible) {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 @media (width > 550px) {

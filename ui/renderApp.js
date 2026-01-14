@@ -1,31 +1,43 @@
 import state from "../state/state.js";
+import renderTodos from "./renderTodos.js";
+import renderCounters from "./renderCounters.js";
+import renderEmptyState from "./renderEmptyState.js";
+import renderFilters from "./renderFilters.js";
 
 const renderApp = () => {
-  const tasksList = document.querySelector('.todo__list')
-  const tasksCount = document.querySelector('[data-js-tasks-count]')
+  console.log('Render app triggered');
+  
+  // Рендерим счетчики
+  renderCounters();
+  
+  // Обновляем визуал фильтров по выбранному
+  renderFilters();
+  
+  // 3. Проверяем пустое состояние и рендерим список задач
+  const todo = document.querySelector('[data-js-todo]');
+  const deleteAllButton = todo.querySelector('[data-js-delete-all-button]');
+  const filteredTodos = getFilteredTodos();
+  
+  if (filteredTodos.length === 0) {
+    renderEmptyState();
+    deleteAllButton.classList.remove('is-visible');
+  } else {
+    deleteAllButton.classList.add('is-visible');
+    renderTodos(filteredTodos);
+  }
+};
 
-  tasksList.innerHTML = '' // Очищаем DOM перед рендером
-  tasksCount.textContent = state.todos.length // Устанавливаем счетчик по длине массива задач
+// Вспомогательная функция для получения отфильтрованных задач
+const getFilteredTodos = () => {
+  switch(state.currentFilter) {
+    case 'active':
+      return state.todos.filter(todo => todo.taskStatus === 'active');
+    case 'complete':
+      return state.todos.filter(todo => todo.taskStatus === 'complete');
+    case 'all':
+    default:
+      return state.todos;
+  }
+};
 
-  state.todos.forEach(todo => { // Создание и добавление элементов в список задач
-    let toDoItem = document.createElement('li')
-    toDoItem.className = 'todo__item'
-    toDoItem.innerHTML =
-    `<div class="todo__item-wrapper ${todo.isExpanded === false ? "" : "is-expanded"}" data-js-task-id=${todo.id}>
-      <input
-        class="todo__item-checkbox"
-        type="checkbox"
-        data-js-task-checkbox
-        ${todo.taskStatus === 'complete' ? 'checked' : ''}
-      />
-      ${todo.description !== null ? `<p class="todo__item-title ${todo.taskStatus === 'complete' ? 'complete-line' : ''}" data-js-task-title>${todo.title} <span class="cursor-pointer" data-js-expand>. . .</span></p>
-      <p class="todo__item-description" data-js-task-description ${todo.isExpanded === false ? "hidden" : ""}>${todo.description}</p>` : `<p class="todo__item-title" data-js-task-title>${todo.title}</p>`} 
-      <div class="todo__item-controls">
-        <button class="todo__button button delete-button" data-js-delete-task-button>Del</button>
-      </div>
-    </div>`
-    tasksList.appendChild(toDoItem)
-  });
-}
-
-export default renderApp
+export default renderApp;
