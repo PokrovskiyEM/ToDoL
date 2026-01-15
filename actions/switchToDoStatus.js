@@ -3,17 +3,24 @@ import { notify } from "../state/notify.js"
 
 const switchToDoStatus = (taskId) => {
   let hasChanged = false
+
   const newToDos = state.todos.map((todo) => {
     if (todo.id === +taskId) {
       hasChanged = true
-      return {...todo, taskStatus: todo.taskStatus === 'active' ? 'complete' : 'active'}
+      return {
+        ...todo, 
+        taskStatus: todo.taskStatus === 'active' ? 'complete' : 'active',
+      }
     }
     return todo
   })
   
   if (hasChanged) {
     state.todos = newToDos
-    notify()
+    
+    setTimeout(() => {
+      notify()
+    }, 150)
   } else alert('Элемент не изменен!')
 }
 export default switchToDoStatus

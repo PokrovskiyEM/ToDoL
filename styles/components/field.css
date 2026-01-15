@@ -62,6 +62,7 @@ input[type="search"]::-webkit-search-results-decoration {
   padding-inline: var(--space-xs);
   background-color: var(--color-surface);
   transition: var(--transition-duration) ease-in-out;
+  opacity: 1;
 }
 
 @media (width > 490px) {

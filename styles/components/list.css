@@ -9,13 +9,6 @@
   padding: var(--space-sm) 0;
 }
 
-/* .todo__item-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-sm);
-} */
-
 .todo__item-wrapper {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -69,19 +62,26 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
 
-  &.complete-line {
-    text-decoration: line-through;
-    text-decoration-color: var(--color-muted);
-    text-decoration-thickness: 2px;
-  }
-
   span {
     white-space: nowrap;
   }
 }
 
+.complete-line {
+  text-decoration-line: line-through;
+  text-decoration-color: var(--color-muted);
+}
+
 .cursor-pointer {
   cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  user-select: none;
+
+  &:focus-visible {
+    outline-offset: 3px;
+  }
 }
 /* Временно убрал анимацию, т.к. она запускается при рендере списка, если будет рендер не всего списка, а отдельных задач, то можно вернуть */
 /* @keyframes showDesc {
@@ -103,8 +103,4 @@
   background: none;
   border: none;
   color: var(--color-danger);
-}
-
-.todo__item-checkbox {
-  border: none;
 }

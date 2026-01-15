@@ -17,7 +17,11 @@
   background-color: var(--color-danger);
 }
 
-.button:active {
-  transition-duration: 0s;
+.button:active,
+.todo__item-checkbox:active {
   scale: 0.9;
+}
+
+button:hover {
+  scale: 1.05;
 }

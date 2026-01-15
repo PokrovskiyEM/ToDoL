@@ -28,16 +28,16 @@ const createTodoHTML = (todo) => {
   if (todo.description) {
     return `
       <div class="todo__item-wrapper ${isExpandedClass}" data-js-task-id="${todo.id}">
-        <input class="todo__item-checkbox" type="checkbox" data-js-task-checkbox ${isChecked} />
-        <p class="todo__item-title ${isCompleteClass}" data-js-task-title>
-          ${todo.title} 
-          <span class="cursor-pointer" data-js-expand>. . .</span>
+        <input class="todo__item-checkbox" type="checkbox" data-js-task-checkbox ${isChecked} title="Переключить задачу"/>
+        <p class="todo__item-title" data-js-task-title>
+          <span class="${isCompleteClass}">${todo.title}</span>
+          <button class="cursor-pointer" type="button" data-js-expand>. . .</button>
         </p>
         <p class="todo__item-description" data-js-task-description ${isHidden}>
           ${todo.description}
         </p>
         <div class="todo__item-controls">
-          <button class="todo__button button delete-button" data-js-delete-task-button>Del</button>
+          <button class="todo__button button delete-button" data-js-delete-task-button title="Удалить задачу">Del</button>
         </div>
       </div>
     `;
@@ -45,10 +45,10 @@ const createTodoHTML = (todo) => {
   
   return `
     <div class="todo__item-wrapper" data-js-task-id="${todo.id}">
-      <input class="todo__item-checkbox" type="checkbox" data-js-task-checkbox ${isChecked} />
+      <input class="todo__item-checkbox" type="checkbox" data-js-task-checkbox ${isChecked} title="Переключить задачу"/>
       <p class="todo__item-title ${isCompleteClass}" data-js-task-title>${todo.title}</p>
       <div class="todo__item-controls">
-        <button class="todo__button button delete-button" data-js-delete-task-button>Del</button>
+        <button class="todo__button button delete-button" data-js-delete-task-button title="Удалить задачу">Del</button>
       </div>
     </div>
   `;

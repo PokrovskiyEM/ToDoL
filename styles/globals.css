@@ -18,7 +18,7 @@ input {
 }
 
 label,
-p.complete-line,
+.complete-line,
 .filters button:not(.is-current) {
   opacity: 0.7;
 }

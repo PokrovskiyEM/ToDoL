@@ -21,26 +21,52 @@
             placeholder="" 
             autocomplete="off"
             type="search"
-            data-js-add-manual-input
+            data-js-search-input
           >
           <label class="field__label" for="search-tasks">Поиск задачи</label>
-          <datalist id="tasks">
-            <!-- Тут планирую добавлять задачи, как option для автозаполнения и поиска, пример поля ниже -->
-            <option value="Задача номер 1"></option>
-            <option value="Задача номер 1"></option>
-            <option value="Задача номер 1"></option>
+          <datalist id="tasks" data-js-datalist-options>
           </datalist>
           <button class="button add-manual" 
             type="button" 
             popovertarget="add-task-popover"
             data-js-add-manual-button
+            title="Добавить задачу вручную"
           >
             <span>Добавить задачу</span>
           </button>
           <div class="popover" popover id="add-task-popover">
-            <form class="popover__manual-form">
+            <div class="popover__manual-form">
               <!-- Форма добавления задачи вручную -->
-            </form>
+              <div class="todo__field field">
+                <input class="field__input" 
+                    id="title-tasks" 
+                    placeholder="" 
+                    autocomplete="off" 
+                    type="text"
+                    data-js-manual-add-title-input
+                    required
+                    autofocus
+                >
+                <label class="field__label" for="title-tasks">Название задачи</label>
+              </div>
+              <div class="todo__field field">
+                <input class="field__input" 
+                    id="description-tasks" 
+                    placeholder="" 
+                    autocomplete="off" 
+                    type="text"
+                    data-js-manual-add-description-input
+                    required
+                >
+                <label class="field__label" for="description-tasks">Описание задачи</label>
+              </div>
+              <button class="button" 
+                type="button" 
+                data-js-quick-manual-button
+              >
+                <span>Добавить задачу</span>
+              </button>
+            </div>
           </div>
         </div>
       </form>
@@ -51,12 +77,16 @@
             id="search-tasks" 
             placeholder="" 
             autocomplete="off" 
-            type="search"
+            type="text"
             data-js-quick-add-input
             required
+            autofocus
         >
         <label class="field__label" for="search-tasks">Быстрое создание задачи</label>
-        <button class="button" type="submit" data-js-quick-add-button>
+        <button class="button" 
+          type="submit" 
+          data-js-quick-add-button 
+          title="Добавить задачу быстро">
           <span>+</span>
         </button>
       </div>
@@ -67,7 +97,11 @@
           <button class="filters__button button" data-js-filter="active">Активные<br><span data-js-active-tasks-count>0</span></button>
           <button class="filters__button button" data-js-filter="complete">Завершенные<br><span data-js-complete-tasks-count>0</span></button>
       </div>
-      <button class="todo__info-delete-all-button button" type="button" data-js-delete-all-button>Удалить все</button>
+      <button class="todo__info-delete-all-button button" 
+        type="button" 
+        data-js-delete-all-button
+        title="Удалить все задачи"
+        >Удалить все</button>
     </div>
     <ul class="todo__list" data-js-todo-list>
     </ul>

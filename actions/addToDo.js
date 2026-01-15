@@ -3,17 +3,17 @@ import { notify } from "../state/notify.js"
 
 const addToDo = (taskTitle, taskDescription) => {
   if (!taskTitle) {
-    alert('Нельзя ввести пустую задачу!') 
+    alert('Нельзя ввести задачу без названия!') 
     return
   }
   
   const newToDoItem =
-  {
-    id: Date.now(),
-    title: taskTitle.trim(),
-    description: taskDescription?.trim() || null,
-    taskStatus: 'active',
-  }
+    {
+      id: Date.now(),
+      title: taskTitle.trim(),
+      description: taskDescription?.trim() || null,
+      taskStatus: 'active',
+    }
   state.todos.push(newToDoItem)
 
   notify()

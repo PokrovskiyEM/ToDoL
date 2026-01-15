@@ -3,6 +3,7 @@ import renderTodos from "./renderTodos.js";
 import renderCounters from "./renderCounters.js";
 import renderEmptyState from "./renderEmptyState.js";
 import renderFilters from "./renderFilters.js";
+import renderDatalist from "./renderDatalist.js";
 
 const renderApp = () => {
   console.log('Render app triggered');
@@ -25,19 +26,37 @@ const renderApp = () => {
     deleteAllButton.classList.add('is-visible');
     renderTodos(filteredTodos);
   }
+
+  // Рендерим подсказки
+  renderDatalist();
 };
 
 // Вспомогательная функция для получения отфильтрованных задач
-const getFilteredTodos = () => {
+export const getFilteredTodos = () => {
+  let todos = [...state.todos]
+
   switch(state.currentFilter) {
     case 'active':
-      return state.todos.filter(todo => todo.taskStatus === 'active');
+      todos = todos.filter(todo => todo.taskStatus === 'active');
+      break;
     case 'complete':
-      return state.todos.filter(todo => todo.taskStatus === 'complete');
+      todos = todos.filter(todo => todo.taskStatus === 'complete');
+      break;
     case 'all':
     default:
-      return state.todos;
+      break;
   }
+
+  // Поиск по searchQuery
+  if (state.searchQuery) {
+    const query = state.searchQuery.trim().toLowerCase();
+
+    todos = todos.filter(todo =>
+      todo.title.toLowerCase().includes(query)
+    );
+  }
+
+  return todos;
 };
 
 export default renderApp;
