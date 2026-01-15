@@ -15,8 +15,6 @@ const expandDescription = (taskId) => {
     state.todos = newToDos
     notify()
   } else alert('Элемент не раскрылся!')
-
-  notify()
 }
 
 export default expandDescription

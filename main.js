@@ -28,11 +28,11 @@ filterButtons.forEach(button => {
     const selectedFilter = event.target.getAttribute('data-js-filter')
     setFilter(selectedFilter)
 
-    // Переключаем стили
-    filterButtons.forEach(filter => {
-      filter.classList.remove('is-current')
-    })
-    event.target.classList.add('is-current')
+    // Лишнее, тоже самое в методе renderFilters() // Переключаем стили
+    // filterButtons.forEach(filter => {
+    //   filter.classList.remove('is-current')
+    // })
+    // event.target.classList.add('is-current')
   })
 })
 
