@@ -4,7 +4,7 @@ import { notify } from "../state/notify.js"
 const expandDescription = (taskId) => {
   let hasChanged = false
   const newToDos = state.todos.map((todo) => {
-    if (todo.id === +taskId) {
+    if (todo.id === taskId) {
       hasChanged = true
       return {...todo, isExpanded: todo.isExpanded !== true ? true : false}
     }

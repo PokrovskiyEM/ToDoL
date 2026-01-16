@@ -5,7 +5,7 @@ const switchToDoStatus = (taskId) => {
   let hasChanged = false
 
   const newToDos = state.todos.map((todo) => {
-    if (todo.id === +taskId) {
+    if (todo.id === taskId) {
       hasChanged = true
       return {
         ...todo, 

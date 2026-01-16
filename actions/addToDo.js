@@ -9,7 +9,7 @@ const addToDo = (taskTitle, taskDescription) => {
   
   const newToDoItem =
     {
-      id: Date.now(),
+      id: crypto?.randomUUID() ?? Date.now().toString(),
       title: taskTitle.trim(),
       description: taskDescription?.trim() || null,
       taskStatus: 'active',
