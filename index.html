@@ -4,16 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ToDoL</title>
+  <meta name="description" content="ToDoL - удобное приложение для управления задачами. Создавайте, отслеживайте и организуйте свои дела с возможностью поиска, фильтрации и детального описания задач.">
+  <title>ToDoL - Управление задачами</title>
   <link rel="stylesheet" href="./styles/index.css">
   <script type="module" src="./main.js"></script>
 </head>
 
 <body>
-  <div class="todo" data-js-todo>
+  <div class="todo" data-js-todo role="main">
     <h1 class="todo__title">ТуДуЛИСТ</h1>
     <search>
-      <form class="todo__form" data-js-add-manual-form>
+      <form class="todo__form" data-js-add-manual-form role="search" aria-label="Поиск и добавление задач">
         <div class="todo__field field">
           <input class="field__input" 
             id="search-tasks" 
@@ -22,20 +23,26 @@
             autocomplete="off"
             type="search"
             data-js-search-input
+            aria-label="Поиск задачи"
+            aria-describedby="search-tasks-hint"
           >
           <label class="field__label" for="search-tasks">Поиск задачи</label>
-          <datalist id="tasks" data-js-datalist-options>
+          <span id="search-tasks-hint" class="visually-hidden">Введите название задачи для поиска</span>
+          <datalist id="tasks" data-js-datalist-options aria-label="Список доступных задач">
           </datalist>
           <button class="button add-manual" 
             type="button" 
             popovertarget="add-task-popover"
             data-js-add-manual-button
-            title="Добавить задачу вручную"
+            aria-label="Добавить задачу вручную"
+            aria-expanded="false"
+            aria-controls="add-task-popover"
           >
             <span>Добавить задачу</span>
           </button>
-          <div class="popover" popover id="add-task-popover">
+          <div class="popover" popover id="add-task-popover" data-js-task-popover role="dialog" aria-labelledby="add-task-popover-title" aria-modal="true">
             <div class="popover__manual-form">
+              <h2 id="add-task-popover-title" class="visually-hidden">Добавить новую задачу</h2>
               <!-- Форма добавления задачи вручную -->
               <div class="todo__field field">
                 <input class="field__input" 
@@ -46,6 +53,7 @@
                     data-js-manual-add-title-input
                     required
                     autofocus
+                    aria-required="true"
                 >
                 <label class="field__label" for="title-tasks">Название задачи</label>
               </div>
@@ -57,12 +65,14 @@
                     type="text"
                     data-js-manual-add-description-input
                     required
+                    aria-required="true"
                 >
                 <label class="field__label" for="description-tasks">Описание задачи</label>
               </div>
               <button class="button" 
                 type="button" 
                 data-js-quick-manual-button
+                aria-label="Добавить задачу с указанным названием и описанием"
               >
                 <span>Добавить задачу</span>
               </button>
@@ -71,40 +81,63 @@
         </div>
       </form>
     </search>
-    <form class="todo__form" data-js-quick-add-form>
+    <form class="todo__form" data-js-quick-add-form aria-label="Быстрое создание задачи">
       <div class="todo__field field">
         <input class="field__input" 
-            id="search-tasks" 
+            id="popover-search-tasks" 
             placeholder="" 
             autocomplete="off" 
             type="text"
             data-js-quick-add-input
             required
             autofocus
+            aria-required="true"
+            aria-label="Быстрое создание задачи"
         >
-        <label class="field__label" for="search-tasks">Быстрое создание задачи</label>
+        <label class="field__label" for="popover-search-tasks">Быстрое создание задачи</label>
         <button class="button" 
           type="submit" 
           data-js-quick-add-button 
-          title="Добавить задачу быстро">
-          <span>+</span>
+          aria-label="Добавить задачу быстро"
+        >
+          <span aria-hidden="true">+</span>
+          <span class="visually-hidden">Добавить задачу</span>
         </button>
       </div>
     </form>
     <div class="todo__info">
-      <div class="todo__info-filters filters">
-          <button class="filters__button button is-current" data-js-filter="all">Все<br><span data-js-tasks-count>0</span></button>
-          <button class="filters__button button" data-js-filter="active">Активные<br><span data-js-active-tasks-count>0</span></button>
-          <button class="filters__button button" data-js-filter="complete">Завершенные<br><span data-js-complete-tasks-count>0</span></button>
+      <div class="todo__info-filters filters" role="group" aria-label="Фильтры задач">
+          <button class="filters__button button is-current" 
+            data-js-filter="all" 
+            aria-pressed="true"
+            aria-label="Показать все задачи, всего: "
+          >
+            Все<br><span data-js-tasks-count aria-live="polite" aria-atomic="true">0</span>
+          </button>
+          <button class="filters__button button" 
+            data-js-filter="active" 
+            aria-pressed="false"
+            aria-label="Показать активные задачи, всего: "
+          >
+            Активные<br><span data-js-active-tasks-count aria-live="polite" aria-atomic="true">0</span>
+          </button>
+          <button class="filters__button button" 
+            data-js-filter="complete" 
+            aria-pressed="false"
+            aria-label="Показать завершенные задачи, всего: "
+          >
+            Завершенные<br><span data-js-complete-tasks-count aria-live="polite" aria-atomic="true">0</span>
+          </button>
       </div>
       <button class="todo__info-delete-all-button button" 
         type="button" 
         data-js-delete-all-button
-        title="Удалить все задачи"
-        >Удалить все</button>
+        aria-label="Удалить все отфильтрованные задачи"
+      >Удалить все</button>
     </div>
-    <ul class="todo__list" data-js-todo-list>
+    <ul class="todo__list" data-js-todo-list role="list" aria-label="Список задач">
     </ul>
+    <div id="aria-live-status" class="visually-hidden" aria-live="polite" aria-atomic="true" role="status"></div>
   </div>
 </body>
 

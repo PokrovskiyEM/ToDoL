@@ -18,9 +18,8 @@ const switchToDoStatus = (taskId) => {
   if (hasChanged) {
     state.todos = newToDos
     
-    setTimeout(() => {
-      notify()
-    }, 150)
+    notify()
+    
   } else alert('Элемент не изменен!')
 }
 export default switchToDoStatus

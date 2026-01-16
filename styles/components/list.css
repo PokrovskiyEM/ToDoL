@@ -10,6 +10,13 @@
 }
 
 .todo__item-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.todo__item-wrapper {
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-areas: 
@@ -39,6 +46,11 @@
     animation-direction: alternate;
     animation-timing-function: ease-in-out;
   }
+  
+  /* Скрываем описание из grid когда оно скрыто */
+  & .todo__item-description.hidden {
+    display: none;
+  }
 }
 
 .todo__item-wrapper.is-expanded {
@@ -55,6 +67,11 @@
     'check title controls'
     'description description description';
   row-gap: var(--space-sm);
+  
+  /* Описание видимо и участвует в grid когда развернуто */
+  & .todo__item-description {
+    display: block;
+  }
 }
 
 .todo__item-title {

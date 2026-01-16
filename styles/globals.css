@@ -22,3 +22,16 @@ label,
 .filters button:not(.is-current) {
   opacity: 0.7;
 }
+
+/* Класс для скрытия элементов визуально, но оставления их доступными для скринридеров */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

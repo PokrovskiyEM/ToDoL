@@ -6,7 +6,7 @@ const expandDescription = (taskId) => {
   const newToDos = state.todos.map((todo) => {
     if (todo.id === taskId) {
       hasChanged = true
-      return {...todo, isExpanded: todo.isExpanded !== true ? true : false}
+      return {...todo, isExpanded: !todo.isExpanded}
     }
     return todo
   })
@@ -14,7 +14,10 @@ const expandDescription = (taskId) => {
   if (hasChanged) {
     state.todos = newToDos
     notify()
-  } else alert('Элемент не раскрылся!')
+    
+    // Обновляем aria-атрибуты кнопки раскрытия после рендера
+    // Это произойдет автоматически при следующем рендере через notify()
+  }
 }
 
 export default expandDescription

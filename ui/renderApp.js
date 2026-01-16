@@ -6,7 +6,7 @@ import renderFilters from "./renderFilters.js";
 import renderDatalist from "./renderDatalist.js";
 
 const renderApp = () => {
-  console.log('Render app triggered');
+  // console.log('Render app triggered');
   
   // Рендерим счетчики
   renderCounters();
@@ -49,10 +49,8 @@ export const getFilteredTodos = () => {
 
   // Поиск по searchQuery
   if (state.searchQuery) {
-    const query = state.searchQuery.trim().toLowerCase();
-
     todos = todos.filter(todo =>
-      todo.title.toLowerCase().includes(query)
+      todo.title.toLowerCase().includes(state.searchQuery)
     );
   }
 

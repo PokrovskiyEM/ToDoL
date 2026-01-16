@@ -1,4 +1,4 @@
-import { saveState } from "./localeStorage.js"
+import { saveState } from "./localStorage.js"
 
 const subscribers = []
 

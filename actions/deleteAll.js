@@ -6,8 +6,19 @@ const deleteAll = () => {
   const filtered = getFilteredTodos()
   if (filtered.length === 0) return
   
+  const count = filtered.length;
   state.todos = state.todos.filter(todo => !filtered.includes(todo))
   notify()
+  
+  // Объявляем удаление задач для скринридеров
+  const statusEl = document.getElementById('aria-live-status');
+  if (statusEl) {
+    const message = `Удалено задач: ${count}`;
+    statusEl.textContent = message;
+    setTimeout(() => {
+      statusEl.textContent = '';
+    }, 2000);
+  }
 }
 
 export default deleteAll

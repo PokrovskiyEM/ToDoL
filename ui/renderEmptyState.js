@@ -23,8 +23,14 @@ const renderEmptyState = () => {
   // Создаем сообщение о пустом списке
   const emptyMessage = document.createElement('div');
   emptyMessage.className = 'todo__empty-message';
-  emptyMessage.dataset.jsEmptyMessage = ''
-  emptyMessage.innerHTML = `<p>${messages[state.currentFilter] || messages.all}</p>`;
+  emptyMessage.dataset.jsEmptyMessage = '';
+  emptyMessage.setAttribute('role', 'status');
+  emptyMessage.setAttribute('aria-live', 'polite');
+  const messageText = messages[state.currentFilter] || messages.all;
+  
+  const p = document.createElement('p');
+  p.textContent = messageText;
+  emptyMessage.appendChild(p);
   
   todo.appendChild(emptyMessage);
 };

@@ -1,0 +1,407 @@
+/* ============================================
+   АНИМАЦИИ ДЛЯ TODO ПРИЛОЖЕНИЯ
+   ============================================ */
+
+/* ========== Базовые переходы ========== */
+:root {
+  --animation-fast: 0.15s;
+  --animation-normal: 0.3s;
+  --animation-slow: 0.5s;
+  --easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --easing-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ========== 1. Анимация появления задачи (при добавлении) ========== */
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.todo__item {
+  animation: slideInFromTop var(--animation-normal) var(--easing-smooth);
+}
+
+/* Вариант с задержкой для каждой задачи (stagger effect) */
+.todo__item:nth-child(1) { animation-delay: 0ms; }
+.todo__item:nth-child(2) { animation-delay: 50ms; }
+.todo__item:nth-child(3) { animation-delay: 100ms; }
+.todo__item:nth-child(4) { animation-delay: 150ms; }
+.todo__item:nth-child(5) { animation-delay: 200ms; }
+.todo__item:nth-child(n+6) { animation-delay: 250ms; }
+
+/* ========== 2. Анимация удаления задачи ========== */
+/* @keyframes slideOutToRight {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    max-height: 200px;
+    margin-bottom: var(--space-sm);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100px) scale(0.8);
+    max-height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.todo__item.removing {
+  animation: slideOutToRight var(--animation-normal) var(--easing-smooth) forwards;
+  overflow: hidden;
+} */
+
+/* ========== 3. Анимация раскрытия описания задачи ========== */
+@keyframes expandDescription {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+    transform: translateY(0);
+  }
+}
+
+.todo__item-description:not(.hidden) {
+  animation: expandDescription var(--animation-slow) var(--easing-smooth) forwards;
+  display: block;
+}
+
+@keyframes collapseDescription {
+  from {
+    opacity: 1;
+    max-height: 500px;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.todo__item-description.hidden {
+  animation: collapseDescription var(--animation-normal) var(--easing-smooth) forwards;
+}
+
+/* ========== 4. Анимация чекбокса при отметке ========== */
+@keyframes checkmarkAppear {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.todo__item-checkbox:checked::after {
+  animation: checkmarkAppear var(--animation-fast) var(--easing-bounce);
+}
+
+/* Пульсация чекбокса при наведении */
+@keyframes checkboxPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+  }
+}
+
+.todo__item-checkbox:hover:not(:checked) {
+  animation: checkboxPulse 1.5s var(--easing-smooth) infinite;
+}
+
+/* ========== 5. Анимация кнопок и фильтров ========== */
+@keyframes buttonPress {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.button:active {
+  animation: buttonPress var(--animation-fast) var(--easing-smooth);
+}
+
+/* Анимация переключения фильтров */
+@keyframes filterSwitch {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+    background-color: var(--color-primary);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.filters__button.is-current {
+  position: relative;
+  transition: background-color var(--animation-normal) var(--easing-smooth);
+}
+
+.filters__button.is-current::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-danger);
+  animation: underlineExpand var(--animation-normal) var(--easing-smooth);
+}
+
+@keyframes underlineExpand {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ========== 6. Анимация счетчиков ========== */
+/* @keyframes counterPop {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+    color: var(--color-danger);
+  }
+}
+
+[data-js-tasks-count],
+[data-js-active-tasks-count],
+[data-js-complete-tasks-count] {
+  display: inline-block;
+  transition: transform var(--animation-fast) var(--easing-smooth);
+}
+
+[data-js-tasks-count]:not(.no-animation),
+[data-js-active-tasks-count]:not(.no-animation),
+[data-js-complete-tasks-count]:not(.no-animation) {
+  animation: counterPop var(--animation-fast) var(--easing-bounce);
+} */
+
+/* ========== 7. Анимация пустого состояния ========== */
+/* @keyframes emptyStateFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.todo__empty-message {
+  animation: emptyStateFadeIn var(--animation-slow) var(--easing-smooth);
+}
+
+/* Иконка для пустого состояния (если добавите) */
+@keyframes emptyStateIcon {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(-5deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+} */
+
+/* ========== 8. Анимация формы поиска ========== */
+.field__input:focus {
+  animation: inputFocus var(--animation-fast) var(--easing-smooth);
+}
+
+@keyframes inputFocus {
+  from {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  to {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  }
+}
+
+/* ========== 9. Анимация кнопки удаления ========== */
+@keyframes deleteButtonShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-3px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(3px);
+  }
+}
+
+.delete-button:hover {
+  animation: deleteButtonShake 0.5s var(--easing-smooth);
+}
+
+/* Более спокойный вариант - просто пульсация */
+@keyframes deleteButtonPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.delete-button:hover {
+  animation: deleteButtonPulse 1.5s var(--easing-smooth) infinite;
+}
+
+/* ========== 10. Улучшенная анимация popover ========== */
+@keyframes popoverSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.popover:popover-open {
+  animation: popoverSlideIn var(--animation-normal) var(--easing-elastic);
+}
+
+@keyframes backdropFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(4px) grayscale(70%);
+  }
+}
+
+[popover]::backdrop {
+  animation: backdropFadeIn var(--animation-normal) var(--easing-smooth);
+}
+
+/* ========== 11. Анимация загрузки (skeleton) ========== */
+@keyframes skeletonLoading {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-border) 0px,
+    var(--color-surface) 40px,
+    var(--color-border) 80px
+  );
+  background-size: 200px 100%;
+  animation: skeletonLoading 1.5s infinite;
+}
+
+/* ========== 12. Микроанимация для кнопки "+" ========== */
+@keyframes plusRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+.button[data-js-quick-add-button]:hover span[aria-hidden="true"] {
+  animation: plusRotate var(--animation-fast) var(--easing-smooth);
+}
+
+/* ========== 13. Анимация зачеркивания текста ========== */
+@keyframes strikethrough {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.complete-line {
+  position: relative;
+  transition: opacity var(--animation-normal) var(--easing-smooth);
+}
+
+.complete-line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-muted);
+  animation: strikethrough var(--animation-normal) var(--easing-smooth) forwards;
+}
+
+/* ========== 14. Анимация появления нового элемента в списке ========== */
+@keyframes newItemHighlight {
+  0% {
+    background-color: var(--color-accent-alt);
+    transform: scale(1);
+  }
+  50% {
+    background-color: rgba(34, 197, 94, 0.2);
+    transform: scale(1.02);
+  }
+  100% {
+    background-color: transparent;
+    transform: scale(1);
+  }
+}
+
+.todo__item.new-item {
+  animation: newItemHighlight var(--animation-slow) var(--easing-smooth);
+}
+
+/* ========== 15. Уменьшение движения для пользователей с prefers-reduced-motion ========== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
