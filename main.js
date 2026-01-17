@@ -38,7 +38,9 @@ const addTaskPopover = document.querySelector('[data-js-task-popover]')
 if (addTaskPopover) {
   addTaskPopover.addEventListener('toggle', (event) => {
     if (addManualButton) {
-      addManualButton.setAttribute('aria-expanded', event.target.matches(':popover-open') ? 'true' : 'false');
+      addManualButton.setAttribute('aria-expanded', event.target.matches(':popover-open') 
+        ? 'true' 
+        : 'false');
     }
   });
 }
@@ -67,7 +69,6 @@ if (manualAddButton) {
   });
 }
 
-
 // Быстрое добавление задачи
 const quickAddButton = document.querySelector('[data-js-quick-add-button]')
 const quickAddInput = document.querySelector('[data-js-quick-add-input]')
@@ -89,6 +90,9 @@ if (quickAddButton && quickAddInput) {
     }
   });
 }
+
+const isAddingTask = document.querySelector('.adding')
+if (isAddingTask) isAddingTask.classList.remove('adding')
 
 // Изменение фильтра задач
 const filterButtons = document.querySelectorAll('[data-js-filter]')
@@ -121,7 +125,7 @@ filterButtons.forEach(button => {
 // Удалить все
 const deleteAllButton = document.querySelector('[data-js-delete-all-button]')
 if (deleteAllButton) {
-  deleteAllButton.addEventListener('click', (event) => {
+  deleteAllButton.addEventListener('click', (event) => {    
     deleteAll()
   });
   
@@ -133,7 +137,6 @@ if (deleteAllButton) {
     }
   });
 }
-
 
 // Обработка нажатий по задачам
 const todoList = document.querySelector('[data-js-todo-list]')
@@ -147,8 +150,14 @@ if (todoList) {
 
     // Удаление задачи
     if (event.target.hasAttribute('data-js-delete-task-button')) {
-      removeToDo(taskId)
-      announceToScreenReader(`Задача удалена`);
+      const todoItem = taskWrapper.closest('.todo__item');
+      todoItem.classList.add('removing');
+
+      setTimeout(() => {
+        removeToDo(taskId)
+        announceToScreenReader(`Задача удалена`);
+      }, 300);
+      
       return;
     }
 

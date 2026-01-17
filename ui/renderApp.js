@@ -24,9 +24,11 @@ const renderApp = () => {
     deleteAllButton.classList.remove('is-visible');
   } else {
     deleteAllButton.classList.add('is-visible');
-    renderTodos(filteredTodos);
+    renderTodos(filteredTodos, state.lastAddedTodoId);
+    
+    state.lastAddedTodoId = null;
   }
-
+  
   // Рендерим подсказки
   renderDatalist();
 };

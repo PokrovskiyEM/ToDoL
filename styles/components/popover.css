@@ -17,17 +17,6 @@
   gap: 16px;
 }
 
-.popover:popover-open {
-  animation: popover-in .2s ease-out;
-}
-
-@keyframes popover-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px) scale(0.9);
-  }
-}
-
 [popover]::backdrop {
   background: rgba(0,0,0,.35);
   backdrop-filter: grayscale(70%);

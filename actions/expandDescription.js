@@ -8,15 +8,19 @@ const expandDescription = (taskId) => {
       hasChanged = true
       return {...todo, isExpanded: !todo.isExpanded}
     }
+
+    // Оставляем открытым только одно описание
+    if (todo.isExpanded) {
+      hasChanged = true;
+      return { ...todo, isExpanded: false };
+    }
+
     return todo
   })
   
   if (hasChanged) {
     state.todos = newToDos
     notify()
-    
-    // Обновляем aria-атрибуты кнопки раскрытия после рендера
-    // Это произойдет автоматически при следующем рендере через notify()
   }
 }
 

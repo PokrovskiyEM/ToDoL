@@ -17,6 +17,9 @@ const addToDo = (taskTitle, taskDescription) => {
     }
   state.todos.push(newToDoItem)
 
+  // Для анимации добавления задачи
+  state.lastAddedTodoId = newToDoItem.id
+
   notify()
   
   // Объявляем добавление задачи для скринридеров

@@ -87,6 +87,7 @@
 .complete-line {
   text-decoration-line: line-through;
   text-decoration-color: var(--color-muted);
+  text-decoration-thickness: 2px;
 }
 
 .cursor-pointer {
@@ -100,16 +101,6 @@
     outline-offset: 3px;
   }
 }
-/* Временно убрал анимацию, т.к. она запускается при рендере списка, если будет рендер не всего списка, а отдельных задач, то можно вернуть */
-/* @keyframes showDesc {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-} */
 
 .todo__item-description {
   font-size: 0.9em;

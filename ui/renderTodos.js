@@ -5,7 +5,7 @@ const escapeHTML = (str) => {
   return div.innerHTML;
 };
 
-const renderToDos = (todosToRender) => {
+const renderToDos = (todosToRender, lastAddedTodoId) => {
   const todoList = document.querySelector('[data-js-todo-list]')
   const emptyMessage = document.querySelector('[data-js-empty-message]')
 
@@ -22,6 +22,18 @@ const renderToDos = (todosToRender) => {
     const toDoItem = document.createElement('li');
     toDoItem.className = 'todo__item';
     toDoItem.innerHTML = createTodoHTML(todo);
+
+    // Анимация добавления задачи
+    if (todo.id === lastAddedTodoId) {
+      toDoItem.classList.add('adding');
+      
+      toDoItem.addEventListener(
+        'animationend', 
+        () => toDoItem.classList.remove('adding'),
+        { once: true }
+      );
+    }
+
     todoList.appendChild(toDoItem);
   });
   
