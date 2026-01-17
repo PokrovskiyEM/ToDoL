@@ -20,25 +20,24 @@
       'active active complete complete';
     & :nth-child(1) {
       grid-area: all;
-      /* grid-column: span 2; */
     }
     & :nth-child(2) {
       grid-area: active;
-      /* grid-column: span 2; */
     }
     & :last-child {
       grid-area: complete;
-      /* grid-column: span 4; */
     }
   }
 }
 
 @media (width < 334px) {
   .filters {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    width: 80%;
+    gap: calc(1rem / 2);
   }
   .filters__button {
-    min-width: 100px;
+    width: 100%;;
   }
 }
