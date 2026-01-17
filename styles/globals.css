@@ -1,11 +1,15 @@
 html, body {
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-base);
+  
+  /* Шрифты на выбор */
+  /* font-family: var(--font-base); */
+  font-family: var(--font-main);
+  /* font-family: var(--font-main-3); */
 }
 
 body {
-  padding-inline: 1rem
+  padding-inline: 1rem;
 }
 
 button {

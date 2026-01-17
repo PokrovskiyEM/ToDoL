@@ -21,4 +21,6 @@
   --transition-duration: 0.2s;
 
   --font-base: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-main-3: 'IBM Plex Sans', system-ui, sans-serif;
 }
