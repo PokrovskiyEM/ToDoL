@@ -111,7 +111,7 @@
   animation: checkboxUnPulse 1.5s var(--easing-smooth) infinite;
 }
 
-/* ========== 7. Анимация пустого состояния ========== */
+/* ========== 5. Анимация пустого состояния ========== */
 @keyframes emptyStateFadeIn {
   from {
     opacity: 0;
@@ -127,7 +127,7 @@
   animation: emptyStateFadeIn var(--animation-slow) var(--easing-smooth);
 }
 
-/* ========== 9. Анимация кнопки удаления ========== */
+/* ========== 6. Анимация кнопки удаления ========== */
 @keyframes deleteButtonShake {
   0%, 100% {
     transform: translateX(0);
@@ -144,7 +144,7 @@
   animation: deleteButtonShake 0.5s var(--easing-smooth);
 }
 
-/* ========== 10. Улучшенная анимация popover ========== */
+/* ========== 7. Улучшенная анимация popover ========== */
 @keyframes popoverSlideIn {
   from {
     opacity: 0;
@@ -160,7 +160,7 @@
   animation: popoverSlideIn var(--animation-normal) var(--easing-elastic);
 }
 
-/* ========== 15. Уменьшение движения для пользователей с prefers-reduced-motion ========== */
+/* ========== 8. Уменьшение движения для пользователей с prefers-reduced-motion ========== */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
