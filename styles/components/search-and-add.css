@@ -1,0 +1,7 @@
+.search-and-add {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}

@@ -13,74 +13,76 @@
 <body>
   <div class="todo" data-js-todo role="main">
     <h1 class="todo__title">ТуДуЛИСТ</h1>
-    <search>
-      <form class="todo__form" data-js-add-manual-form role="search" aria-label="Поиск и добавление задач">
-        <div class="todo__field field">
-          <input class="field__input" 
-            id="search-tasks" 
-            list="tasks" 
-            placeholder="" 
-            autocomplete="off"
-            type="search"
-            data-js-search-input
-            aria-label="Поиск задачи"
-            aria-describedby="search-tasks-hint"
-          >
-          <label class="field__label" for="search-tasks">Поиск задачи</label>
-          <span id="search-tasks-hint" class="visually-hidden">Введите название задачи для поиска</span>
-          <datalist id="tasks" data-js-datalist-options aria-label="Список доступных задач">
-          </datalist>
-          <button class="button add-manual" 
-            type="button" 
-            popovertarget="add-task-popover"
-            data-js-add-manual-button
-            aria-label="Добавить задачу вручную"
-            aria-expanded="false"
-            aria-controls="add-task-popover"
+    <div class="search-and-add">
+      <search>
+        <form class="todo__form delete-margin-bottom" data-js-add-manual-form role="search" aria-label="Поиск и добавление задач">
+          <div class="todo__field field">
+            <input class="field__input"
+              id="search-tasks"
+              list="tasks"
+              placeholder=""
+              autocomplete="off"
+              type="search"
+              data-js-search-input
+              aria-label="Поиск задачи"
+              aria-describedby="search-tasks-hint"
+            />
+            <label class="field__label" for="search-tasks">Поиск задачи</label>
+            <span id="search-tasks-hint" class="visually-hidden">Введите название задачи для поиска</span>
+            <datalist id="tasks" data-js-datalist-options aria-label="Список доступных задач">
+            </datalist>
+          </div>
+        </form>
+      </search>
+      <button class="button add-manual"
+          type="button"
+          popovertarget="add-task-popover"
+          data-js-add-manual-button
+          aria-label="Добавить задачу вручную"
+          aria-expanded="false"
+          aria-controls="add-task-popover"
+        >
+          <span>Добавить задачу</span>
+      </button>
+      <div class="popover" popover id="add-task-popover" data-js-task-popover role="dialog" aria-labelledby="add-task-popover-title" aria-modal="true">
+        <div class="popover__manual-form">
+          <h2 id="add-task-popover-title" class="visually-hidden">Добавить новую задачу</h2>
+          {/* Форма добавления задачи вручную */}
+          <div class="todo__field field">
+            <input class="field__input"
+              id="title-tasks"
+              placeholder=""
+              autocomplete="off"
+              type="text"
+              data-js-manual-add-title-input
+              required
+              autofocus
+              aria-required="true"
+            />
+            <label class="field__label" for="title-tasks">Название задачи</label>
+          </div>
+          <div class="todo__field field">
+            <input class="field__input"
+              id="description-tasks"
+              placeholder=""
+              autocomplete="off"
+              type="text"
+              data-js-manual-add-description-input
+              required
+              aria-required="true"
+            />
+            <label class="field__label" for="description-tasks">Описание задачи</label>
+          </div>
+          <button class="button"
+            type="button"
+            data-js-quick-manual-button
+            aria-label="Добавить задачу с указанным названием и описанием"
           >
             <span>Добавить задачу</span>
           </button>
-          <div class="popover" popover id="add-task-popover" data-js-task-popover role="dialog" aria-labelledby="add-task-popover-title" aria-modal="true">
-            <div class="popover__manual-form">
-              <h2 id="add-task-popover-title" class="visually-hidden">Добавить новую задачу</h2>
-              <!-- Форма добавления задачи вручную -->
-              <div class="todo__field field">
-                <input class="field__input" 
-                    id="title-tasks" 
-                    placeholder="" 
-                    autocomplete="off" 
-                    type="text"
-                    data-js-manual-add-title-input
-                    required
-                    autofocus
-                    aria-required="true"
-                >
-                <label class="field__label" for="title-tasks">Название задачи</label>
-              </div>
-              <div class="todo__field field">
-                <input class="field__input" 
-                    id="description-tasks" 
-                    placeholder="" 
-                    autocomplete="off" 
-                    type="text"
-                    data-js-manual-add-description-input
-                    required
-                    aria-required="true"
-                >
-                <label class="field__label" for="description-tasks">Описание задачи</label>
-              </div>
-              <button class="button" 
-                type="button" 
-                data-js-quick-manual-button
-                aria-label="Добавить задачу с указанным названием и описанием"
-              >
-                <span>Добавить задачу</span>
-              </button>
-            </div>
-          </div>
         </div>
-      </form>
-    </search>
+      </div>
+    </div>
     <form class="todo__form" data-js-quick-add-form aria-label="Быстрое создание задачи">
       <div class="todo__field field">
         <input class="field__input" 

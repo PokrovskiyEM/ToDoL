@@ -1,3 +1,7 @@
 .todo__form {
   margin-bottom: var(--space-md);
 }
+
+.delete-margin-bottom {
+  margin-bottom: 0;
+}

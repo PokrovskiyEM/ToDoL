@@ -5,6 +5,7 @@
 
 /* components */
 @import "./components/todo.css";
+@import "./components/search-and-add.css";
 @import "./components/form.css";
 @import "./components/field.css";
 @import "./components/button.css";
